@@ -1,26 +1,26 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: ReactJS PostCode UI App
+name: Home Automation UI App
 
 on:
   push:
     paths:
-      - PostCodesUI/**
+      - client/**
 
 defaults:
   run:
-    working-directory: ./PostCodesUI
+    working-directory: ./client
     
 jobs:
   build:
     runs-on: ubuntu-latest
     env: 
-      working-directory: ./PostCodesUI
+      working-directory: ./client
       
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
     - name: Deploy to AWS CloudFormation
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
-        name: PostCodeUI
+        name: client
         template: ./PostCodesUI/aws_config/s3_static_website.yaml
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
@@ -55,4 +55,4 @@ jobs:
       run: yarn run build
 
     - name: Deploy to S3
-      run: aws s3 sync ./build s3://postcodeui.com
+      run: aws s3 sync ./build s3://smarthomeautomation.com
