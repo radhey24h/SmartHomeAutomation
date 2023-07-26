@@ -32,15 +32,15 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
         aws-region: us-east-1
 
-    - name: Deploy S3 Bucket Using CloudFormation
-      uses: aws-actions/aws-cloudformation-github-deploy@v1
-      with:
-        name: client
-        template: ./automation/ui/cloudformation/s3_static_website.yaml
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-        aws-region: us-east-1
-        no-fail-on-empty-changeset: "1"
+    # - name: Deploy S3 Bucket Using CloudFormation
+    #   uses: aws-actions/aws-cloudformation-github-deploy@v1
+    #   with:
+    #     name: client
+    #     template: ./automation/ui/cloudformation/s3_static_website.yaml
+    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+    #     aws-region: us-east-1
+    #     no-fail-on-empty-changeset: "1"
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -54,5 +54,5 @@ jobs:
     - name: Build
       run: yarn run build
 
-    - name: Deploy to S3
-      run: aws s3 sync ./build s3://smarthomeautomation.com
+    # - name: Deploy to S3
+    #   run: aws s3 sync ./build s3://smarthomeautomation.com
