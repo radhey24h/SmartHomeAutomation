@@ -32,7 +32,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
         aws-region: us-east-1
 
-    - name: Deploy to AWS CloudFormation
+    - name: Deploy S3 Bucket Using CloudFormation
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: client
