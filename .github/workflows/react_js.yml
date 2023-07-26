@@ -36,7 +36,7 @@ jobs:
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: client
-        template: ./PostCodesUI/aws_config/s3_static_website.yaml
+        template: ./automation/ui/cloudformation/s3_static_website.yaml
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
         aws-region: us-east-1
